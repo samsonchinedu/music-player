@@ -1,0 +1,215 @@
+.audio {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &-profile {
+        gap: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+
+        &-names {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            div {
+                margin-right: 1rem;
+
+                h5 {
+                    font-size: 18px;
+                    font-weight: 700;
+                }
+
+                p {
+                    font-size: 12px;
+                    font-weight: 500;
+                    color: #6b6b6b;
+                    margin-top: 0.3rem;
+                }
+            }
+        }
+    }
+
+    &-player {
+        gap: 20px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+
+        &-top {
+            gap: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            button {
+                border: none;
+                outline: none;
+                background: none;
+            }
+
+            &-play{
+                width: 40.78px;
+                height: 40.78px;
+                color: #060606;
+                border-radius: 50%;
+                background: #FFFFFF !important;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                &-play{
+                    position: relative;
+                    left: 2px;
+                }
+            }
+        }
+
+        &-bottom {
+            gap: 10px;
+            width: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            input[type="range"] {
+                --bar-bg: #f1f1f1;
+                --seek-before-width: 0;
+                --seek-before-color: #ffc2a1;
+                --knobby: #3452a5;
+                --selectedKnobby: #26c9c3;
+
+                appearance: none;
+                background: #fff;
+                border-radius: 10px;
+                width: 100%;
+                height: 11px;
+                outline: none;
+                border: none;
+
+                &::-webkit-slider-runnable-track {
+                    background: var(--bar-bg);
+                    border-radius: 10px;
+                    position: relative;
+                    width: 100%;
+                    height: 11px;
+                    outline: none;
+                }
+
+                &::before {
+                    content: '';
+                    height: 11px;
+                    width: var(--seek-before-width);
+                    background-color: var(--seek-before-color);
+                    border-top-left-radius: 10px;
+                    border-bottom-left-radius: 10px;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    z-index: 2;
+                    cursor: pointer;
+                }
+
+                // knobby - chrome and safari 
+                &::-webkit-slider-thumb {
+                    -webkit-appearance: none;
+                    height: 15px;
+                    width: 15px;
+                    border-radius: 50%;
+                    border: none;
+                    background-color: #acaaa8;
+                    cursor: pointer;
+                    position: relative;
+                    margin: -2px 0 0 0;
+                    z-index: 3;
+                    box-sizing: border-box;
+                }
+
+                // knobby while dragging - chrome and safari
+                &:active::-webkit-slider-thumb {
+                    transform: scale(1.2);
+                    background: #9e9c9a;
+                }
+            }
+        }
+    }
+
+    &-extra{
+        gap: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &-volume{
+            gap: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            input[type="range"] {
+                --bar-bg: #f1f1f1;
+                --seek-before-width: 0;
+                --seek-before-color: #ffc2a1;
+                --knobby: #3452a5;
+                --selectedKnobby: #26c9c3;
+
+                appearance: none;
+                background: #fff;
+                border-radius: 10px;
+                width: 100%;
+                height: 11px;
+                outline: none;
+                border: none;
+
+                &::-webkit-slider-runnable-track {
+                    background: var(--bar-bg);
+                    border-radius: 10px;
+                    position: relative;
+                    width: 100%;
+                    height: 11px;
+                    outline: none;
+                }
+
+                &::before {
+                    content: '';
+                    height: 11px;
+                    width: var(--seek-before-width);
+                    background-color: var(--seek-before-color);
+                    border-top-left-radius: 10px;
+                    border-bottom-left-radius: 10px;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    z-index: 2;
+                    cursor: pointer;
+                }
+
+                // knobby - chrome and safari 
+                &::-webkit-slider-thumb {
+                    -webkit-appearance: none;
+                    height: 15px;
+                    width: 15px;
+                    border-radius: 50%;
+                    border: none;
+                    background-color: #acaaa8;
+                    cursor: pointer;
+                    position: relative;
+                    margin: -2px 0 0 0;
+                    z-index: 3;
+                    box-sizing: border-box;
+                }
+
+                // knobby while dragging - chrome and safari
+                &:active::-webkit-slider-thumb {
+                    transform: scale(1.2);
+                    background: #9e9c9a;
+                }
+            }
+        }
+    }
+}

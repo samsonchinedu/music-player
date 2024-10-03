@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import styles from "./audioplayer.module.scss"
 import { GoHeart } from "react-icons/go";
@@ -10,8 +10,10 @@ import { PiDotsThreeCircleLight } from "react-icons/pi";
 import { IoMdVolumeOff, IoMdVolumeHigh } from "react-icons/io";
 import { TbRepeat, TbRepeatOnce, TbRepeatOff } from "react-icons/tb";
 import { FaBackward, FaForward, FaPause, FaPlay } from "react-icons/fa";
+// import { PlayerContext } from '../../../content/playerContent';
 
-const AudioPlayer = () => {
+const AudioPlayer = ({audioPlayer, progressBar, animationRef, setPlayStatus, track}) => {
+    // const {audioPlayer} = useContext(PlayerContext)
     // state
     const [isPlaying, setIsPlaying] = useState(false);
     const [duration, setDuration] = useState(0);
@@ -21,9 +23,9 @@ const AudioPlayer = () => {
 
 
     // reference
-    const audioPlayer = useRef();   // reference our audio component
-    const progressBar = useRef();   // reference our progress bar
-    const animationRef = useRef();  // reference the animation
+    // const audioPlayer = useRef();   // reference our audio component
+    // const progressBar = useRef();   // reference our progress bar
+    // const animationRef = useRef();  // reference the animation
     const audio = "https://cdn.simplecast.com/audio/cae8b0eb-d9a9-480d-a652-0defcbe047f4/episodes/af52a99b-88c0-4638-b120-d46e142d06d3/audio/500344fb-2e2b-48af-be86-af6ac341a6da/default_tc.mp3"
 
     useEffect(() => {
@@ -48,9 +50,11 @@ const AudioPlayer = () => {
         if (!prevValue) {
             audioPlayer.current.play();
             animationRef.current = requestAnimationFrame(whilePlaying)
+            setPlayStatus(true)
         } else {
             audioPlayer.current.pause();
             cancelAnimationFrame(animationRef.current);
+            setPlayStatus(true)
         }
     }
 
@@ -93,23 +97,23 @@ const AudioPlayer = () => {
         audioPlayer.current.setVolume(muted ? volume : 0)
     }
 
-
+// console.log(track.audioFile[0])
 
 
     return (
         <div className={styles["audio"]}>
-            <audio ref={audioPlayer} id='volume' src={audio} preload='metadata' volume></audio>
+            {track.audioFile ? <audio ref={audioPlayer} id='volume' src={track.audioFile} preload='metadata' volume /> : <p>Loading...</p>}
             <div className={styles["audio-profile"]}>
                 <Image
                     width={60}
                     height={60}
                     alt="Cover Image"
-                    src={"https://images.unsplash.com/photo-1592339420310-e20dfbad29ff?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fG11c2ljJTIwY292ZXJ8ZW58MHx8MHx8fDA%3D"}
+                    src={track.imageUrl}
                 />
                 <div className={styles["audio-profile-names"]}>
                     <div>
-                        <h5>Amazing</h5>
-                        <p>Nathaniel Bassey</p>
+                        <h5>{track.title}</h5>
+                        <p>{track.singer}</p>
                     </div>
                     <GoHeart size={24} />
                 </div>
